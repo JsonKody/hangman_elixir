@@ -13,11 +13,11 @@ defmodule Hangman.Impl.Game do
     turns_left: 7,
     game_state: :initializing,
     letters:    [],
-    used:       MapSet.new(),
+    used:       MapSet.new()
   )
 
   ##################################################
-  
+
   @spec new_game :: t
   def new_game do
     new_game(Dictionary.random_word)
@@ -26,10 +26,10 @@ defmodule Hangman.Impl.Game do
   @spec new_game(String.t) :: t
   def new_game(word) do
     %__MODULE__{
-      letters: word |> String.codepoints 
+      letters: word |> String.codepoints
     }
   end
-  
+
   ##################################################
 
   @spec make_move(t, String.t) :: { t, Type.tally }
@@ -53,7 +53,7 @@ defmodule Hangman.Impl.Game do
     %{ game | used: MapSet.put(game.used, guess) }
     |> score_guess(Enum.member?(game.letters, guess))
   end
-  
+
   ##################################################
 
   defp score_guess(game, _good_guess = true) do
