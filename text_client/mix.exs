@@ -13,6 +13,7 @@ defmodule TextClient.MixProject do
 
   def application do
     [
+      include_applications: [:hangman],
       extra_applications: [:logger]
     ]
   end
